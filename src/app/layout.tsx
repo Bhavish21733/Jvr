@@ -89,6 +89,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        <meta
+          name="google-site-verification"
+          content="p5wu1m9kcGEaFA1qgrUnBpgku4mSO1IxIUhlXa_HbHY"
+        />
         <LocalBusinessJsonLd />
       </head>
       <body
