@@ -45,38 +45,26 @@ export default function ScrollPopupModal() {
         window.scrollY ||
         window.pageYOffset ||
         document.documentElement.scrollTop ||
-        document.body.scrollTop ||
         0;
 
-      const totalHeight = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight
-      );
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
 
-      const viewHeight = window.innerHeight || document.documentElement.clientHeight || 800;
-      const scrollableDist = totalHeight - viewHeight;
+      if (scrollHeight <= 100) return;
 
-      const percent = scrollableDist > 0 ? (scrollTop / scrollableDist) * 100 : 0;
+      const scrollPercent = (scrollTop / scrollHeight) * 100;
 
-      // Trigger popup when user reaches 30% scroll or scrolls 500px
-      if (percent >= 28 || scrollTop >= 500) {
+      // STRICT CONDITION: Trigger popup ONLY when user has actively scrolled down at least 30%
+      if (scrollPercent >= 30) {
         triggeredRef.current = true;
         setIsOpen(true);
       }
     };
 
     window.addEventListener("scroll", checkScroll, { passive: true });
-    window.addEventListener("touchmove", checkScroll, { passive: true });
-
-    // Also check on initial mount after delay
-    const initialCheckTimer = setTimeout(checkScroll, 800);
 
     return () => {
       window.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("touchmove", checkScroll);
-      clearTimeout(initialCheckTimer);
     };
   }, [isDismissed]);
 

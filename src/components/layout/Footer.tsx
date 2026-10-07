@@ -155,7 +155,7 @@ export default function Footer() {
         {/* Local SEO Footer Description & Copyright */}
         <div className="pt-10 mt-10 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p className="text-center sm:text-left" suppressHydrationWarning>
-            &copy; {currentYear} JVR Water Tank Cleaning Services. All rights reserved. Lane Number 3, Chikkadpally, New Nallakunta, Hyderabad, Telangana 500020.
+            &copy; {currentYear} JVR Water Tank Cleaning Services. All rights reserved.
           </p>
           <div className="flex items-center space-x-4">
             <Link href="/privacy-policy/" className="hover:text-slate-300 transition-colors">
